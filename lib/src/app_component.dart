@@ -5,9 +5,19 @@ import 'package:templang/src/edn.dart' as edn;
 @Component(
     selector: 'app',
     templateUrl: 'app_component.html')
-class AppComponent {
+class AppComponent implements OnInit {
 
-  String txtInput;
+  String txtInput = """
+(blok a b
+   (text q w)
+   (row
+      (button d c)
+      (button d c)
+      (button d c)
+      (button d c)
+   )
+)
+  """;
 
   Object root;
 
@@ -21,4 +31,9 @@ class AppComponent {
     }
   }
 
+
+  @override
+  ngOnInit() {
+    inputChanged(txtInput);
+  }
 }

@@ -1,0 +1,100 @@
+body, html {
+    padding:0;
+    margin:0;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+}
+* {
+    box-sizing: inherit;
+}
+.templang {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+}
+.templang__source {
+    font-family: 'Roboto', sans-serif;
+    width: 33%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    padding: 1em;
+}
+.templang__textarea {
+    width: 100%;
+    flex-grow: 1;
+    flex-shrink: 1;
+}
+.templang__help {
+    width: 100%;
+    padding: 1em;
+}
+.templang__render {
+    width: 67%;
+    height: 100%;
+    font-family: 'Patrick Hand', cursive;
+    border-left: 1px solid grey;
+    padding: 1em;
+}
+.templang__render__content {
+    height: 100%;
+    overflow: scroll;
+}
+.node {
+    border: 2px solid black;
+    padding: 0;
+    margin-bottom: 1em;
+}
+.node__content {
+    padding: 1em;
+}
+.node > p {
+    padding: 0.2em;
+    margin: 0;
+}
+
+/* instructions */
+.button {
+    display: block;
+    border: 1px solid black;
+    box-shadow: 3px 4px 2px rgba(0,0,0,0.2);
+    border-radius: 0.5em;
+}
+.button__content {
+    display: none;
+}
+
+.row {
+    border: none;
+}
+.row > *:not(.row__content) {
+    display: none;
+}
+.row__content {
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+}
+.row__content > * {
+    flex-basis: 1px;
+    flex-grow: 1;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+}
+.row__content > *:first-child {
+    margin-left: 0;
+}
+.row__content > *:last-child {
+    margin-right: 0;
+}
+
+.text {
+    border: 1px solid black;
+    box-shadow: inset 2px 2px 2px rgba(0,0,0,0.2);
+    background-color: white;
+}
+.text__content {
+    display: none;
+}
