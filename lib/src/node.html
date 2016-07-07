@@ -1,0 +1,9 @@
+
+<div class="panel">
+    {{ instruction }}
+
+    {{ opts }}
+
+    {{ children }}
+    <node *ngFor="let n of children" [node]="n"></node>
+</div>

@@ -1,0 +1,7 @@
+<div class="panel">
+    <textarea [ngModel]="txtInput" (ngModelChange)="inputChanged($event)" rows="20" cols="100">(fieldset "User details"
+        (text "Username")
+        (password "Password"))</textarea>
+
+    <node *ngIf="root != null" [node]="root"></node>
+</div>
