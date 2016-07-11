@@ -25,9 +25,8 @@ class AppComponent implements OnInit {
     print(text);
     try {
       root = edn.parse(text);
-      print("PARSED TO: $root");
     } catch (e) {
-      print("error: $e");
+      // unparsable input
     }
   }
 
