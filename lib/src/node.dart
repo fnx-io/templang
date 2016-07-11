@@ -75,7 +75,7 @@ class Node {
         }
       } else {
         opts[optName] = o;
-        optName == null;
+        optName = null;
       }
 
       return true;
