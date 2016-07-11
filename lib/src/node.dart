@@ -58,26 +58,30 @@ class Node {
     return o.toString();
   }
 
-  Map<String, Object> collectOpts(Object node) {
-    Map<String, Object> opts = {};
+  InstructionConfig instructionConfig(Object node) {
+    var opts = new InstructionConfig();
     if (!isInstruction(node)) return opts;
     var instruction = node as edn.List;
     String optName;
     edn.forEachWhile(instruction, 1, (Object o) {
       var instr = isInstruction(o);
+      // if this item is a list, it means we have reached first instruction
+      // and that we have to stop collecting opts
       if (instr) return false;
       if (optName == null) {
-        if (edn.isSymbol(o)) {
+        // keywords must be parametrized
+        if (edn.isKeyword(o)) {
+          optName = (o as edn.Keyword).name;
+        } else if (edn.isSymbol(o)) {
           var n = (o as edn.Symbol).name;
-          optName = n;
+          opts.params.add(n);
         } else {
-          optName = o.toString();
+          opts.params.add(o);
         }
       } else {
-        opts[optName] = o;
+        opts.opts[optName] = o;
         optName = null;
       }
-
       return true;
     });
 
@@ -85,7 +89,35 @@ class Node {
   }
 
   Map<String, Object> get opts {
-    return collectOpts(node);
+    return instructionConfig(node).opts;
+  }
+
+  List<String> get params {
+    return instructionConfig(node).params;
+  }
+
+}
+
+class InstructionConfig {
+  List<String> _params = [];
+  Map<String, Object> _opts = {};
+
+  List<String> get params {
+    if (_params == null) return [];
+    return _params;
+  }
+
+  void set params(List<String> p) {
+    _params = p;
+  }
+
+  Map<String, Object> get opts {
+    if (_opts == null) return _opts;
+    return _opts;
+  }
+
+  void set opts (Map<String, Object> o) {
+    _opts = o;
   }
 
 }

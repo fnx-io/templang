@@ -1,6 +1,6 @@
 <div attr.class="node {{ instruction }}">
     <p><strong>{{instruction}}</strong></p>
-    <p>{{opts}}</p>
+    <p>{{ params }} {{opts}}</p>
 
     <div attr.class="node__content {{instruction}}__content">
         <node *ngFor="let n of children" [node]="n"></node>

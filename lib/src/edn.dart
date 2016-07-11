@@ -49,6 +49,7 @@ void forEachWhile(List list, int startIdx, bool f(Object o)) {
 
 js.JsFunction ListConstructor = js.context['jsedn']['List'];
 js.JsFunction SymbolConstructor = js.context['jsedn']['Symbol'];
+js.JsFunction KeywordConstructor = js.context['jsedn']['Keyword'];
 
 bool isList(Object o) {
   return isJsType(o, ListConstructor);
@@ -56,6 +57,10 @@ bool isList(Object o) {
 
 bool isSymbol(Object o) {
   return isJsType(o, SymbolConstructor);
+}
+
+bool isKeyword(Object o) {
+  return isJsType(o, KeywordConstructor);
 }
 
 bool isJsType(Object o, js.JsFunction constructor) {
