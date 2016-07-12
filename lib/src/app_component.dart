@@ -76,6 +76,7 @@ class AppComponent implements OnInit, AfterViewInit {
       self.inputChanged(value);
       changes.detectChanges();
     };
+    editor.callMethod("setSize", ["100%", "100%"]);
     editor.callMethod("on", ['change', js.allowInterop(handler)]);
   }
 
