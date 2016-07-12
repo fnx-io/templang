@@ -118,6 +118,9 @@ body, html {
 .date__string, .check__string, .text__string, .select__string, .textarea__string {
     position: absolute;
     top: -1.5rem;
+    height: 1.5rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .date:before {
     content: "dd/mm/yyyy";
