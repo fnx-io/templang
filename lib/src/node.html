@@ -1,19 +1,6 @@
 <div attr.class="node {{ instruction }}">
-    <p><strong>{{instruction}}</strong></p>
-    <p>{{ params }} {{opts}}</p>
-
-    <div attr.class="node__content {{instruction}}__content">
+    <p attr.class="node__string {{instruction}}__string">{{ paramsAsString }}</p>
+    <div *ngIf="children.isNotEmpty" attr.class="node__content {{instruction}}__content">
         <node *ngFor="let n of children" [node]="n"></node>
     </div>
-
 </div>
-<!--
-<div class="panel">
-    {{ instruction }}
-
-    {{ opts }}
-
-    {{ children }}
-
-</div>
--->

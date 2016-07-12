@@ -13,16 +13,32 @@ class AppComponent implements OnInit, AfterViewInit {
   js.JsObject editor;
 
   String txtInput = """
-(blok a b
-   (text q w)
+(block This is a form
+   (label Please fill out this beautiful lorem ipsum form.
+          Please fill out this beautiful lorem ipsum form.
+          Please fill out this beautiful lorem ipsum form.
+          Please fill out this beautiful lorem ipsum form.
+   )
+   (text Full name)
    (row
-      (button d c)
-      (button d c)
-      (button d c)
-      (button d c)
+		(block Contact
+			(text Email)
+			(text Phone)
+        )
+		(block Address
+			(text Street)
+	        (text City)
+	        (text Zip)
+        )
+     )
+   (row
+      (button cancel)
+      (space)
+      (space)
+      (button save)
    )
 )
-  """;
+""";
 
   Object root;
 

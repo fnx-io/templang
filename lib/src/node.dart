@@ -96,6 +96,15 @@ class Node {
     return instructionConfig(node).params;
   }
 
+  String get paramsAsString {
+    return instructionConfig(node).params.join(" ");
+  }
+
+  /*
+  static const List<String> specialTemplates = const ["text"];
+  bool get defaultTemplate => !specialTemplates.contains(instruction);
+  */
+
 }
 
 class InstructionConfig {
