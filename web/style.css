@@ -24,14 +24,13 @@ body, html {
 }
 .templang__textarea {
     width: 100%;
-    flex-grow: 1;
-    flex-shrink: 1;
 }
 .templang__help {
     width: 100%;
     padding: 1em;
-    flex-grow: 0;
-    flex-shrink: 0;
+    flex-grow: 1;
+    flex-shrink: 1;
+    overflow: auto;
 }
 .templang__render {
     width: 67%;
@@ -42,7 +41,7 @@ body, html {
 }
 .templang__render__content {
     height: 100%;
-    overflow: scroll;
+    overflow: auto;
 }
 .node {
     border: 2px solid black;
@@ -99,20 +98,60 @@ body, html {
     margin-right: 0;
 }
 
-.text {
+.date, .check, .text, .select, .textarea {
     border: 1px solid black;
     box-shadow: inset 2px 2px 2px rgba(0,0,0,0.2);
     background-color: white;
-    margin-top: 1.5em;
-    height: 1.5em;
+    margin-top: 1.8rem;
+    height: 1.5rem;
     cursor: text;
 }
-.text__content {
+.select {
+    box-shadow: inset -2px -2px 2px rgba(0,0,0,0.2);
+}
+.textarea {
+    height: 4rem;
+}
+.date__content, .check__content, .text__content, .select__content, .textarea__content {
     display: none;
 }
-.text__string {
+.date__string, .check__string, .text__string, .select__string, .textarea__string {
     position: absolute;
     top: -1.5rem;
+}
+.date:before {
+    content: "dd/mm/yyyy";
+    color: #777;
+    padding-left: 0.5rem;
+}
+.select:before {
+    content: "-- choose --";
+    color: #777;
+    padding-left: 0.5rem;
+}
+.date:after, .select:after {
+    content: "V";
+    border-left: 1px solid black;
+    position: absolute;
+    top: 0;
+    right:0;
+    width: 2rem;
+    text-align: center;
+    cursor: pointer;
+    background-color: white;
+    box-shadow: inset -2px -2px 2px rgba(0,0,0,0.2);
+}
+.check {
+    border: none;
+    box-shadow: none;
+}
+.check:before {
+    content: "X";
+    border: 1px solid black;
+    width: 1.2rem;
+    text-align: center;
+    display: inline-flex;
+    padding-left: 0.4rem;
 }
 .block__string {
     font-size: 1.5rem;

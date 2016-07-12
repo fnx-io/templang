@@ -14,29 +14,37 @@ class AppComponent implements OnInit, AfterViewInit {
 
   String txtInput = """
 (block This is a form
-   (label Please fill out this beautiful lorem ipsum form.
+  (label Please fill out this beautiful lorem ipsum form.
           Please fill out this beautiful lorem ipsum form.
           Please fill out this beautiful lorem ipsum form.
           Please fill out this beautiful lorem ipsum form.
-   )
-   (text Full name)
-   (row
-		(block Contact
-			(text Email)
-			(text Phone)
-        )
-		(block Address
-			(text Street)
-	        (text City)
-	        (text Zip)
-        )
-     )
-   (row
-      (button cancel)
-      (space)
-      (space)
-      (button save)
-   )
+  )
+  (text Full name)
+  (textarea Short bio)
+  (row
+    (block Contact
+      (text Email)
+      (text Phone)
+      (row
+        (check Yes, you can contact me)
+        (check But not too often)
+      )
+    )
+    (block Address
+      (text Street)
+      (text City)
+      (text Zip)
+      (select Housing type)
+      (date I have been living there since)
+    )
+  )
+  (check I agree with everything, just let me go)
+  (row
+    (button cancel)
+    (space)
+    (space)
+    (button submit)
+  )
 )
 """;
 
@@ -76,7 +84,7 @@ class AppComponent implements OnInit, AfterViewInit {
       self.inputChanged(value);
       changes.detectChanges();
     };
-    editor.callMethod("setSize", ["100%", "100%"]);
+    editor.callMethod("setSize", ["100%", "70vh"]);
     editor.callMethod("on", ['change', js.allowInterop(handler)]);
   }
 
