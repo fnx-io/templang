@@ -66,7 +66,7 @@ class AppComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     js.JsObject cm = js.context['CodeMirror'];
 
-    var opts = {'lineNumbers': true};
+    var opts = {'lineNumbers': true, 'matchBrackets': true};
     editor = cm.callMethod("fromTextArea", [textArea.nativeElement, new js.JsObject.jsify(opts)]);
     var self = this;
     var handler = (dynamic ed, dynamic change) {

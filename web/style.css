@@ -134,3 +134,8 @@ body, html {
 .label {
     border: none;
 }
+
+div.CodeMirror .CodeMirror-matchingbracket {
+    color: black !important;
+    background-color: #eeeeee;
+}
