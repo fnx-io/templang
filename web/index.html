@@ -3,6 +3,18 @@
 <head>
     <title>Getting Started</title>
     <script src="js/jsedn.js"></script>
+    <script>
+        function isListObject(instance) {
+            return instance instanceof jsedn.List;
+        }
+        function isSymbolObject(instance) {
+            return instance instanceof jsedn.Symbol;
+        }
+        function isKeywordObject(instance) {
+            return instance instanceof jsedn.Keyword;
+        }
+
+    </script>
     <script defer src="main.dart" type="application/dart"></script>
     <script defer src="packages/browser/dart.js"></script>
 

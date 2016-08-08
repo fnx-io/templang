@@ -1,7 +1,5 @@
 import 'package:angular2/core.dart';
-
 import 'package:templang/src/edn.dart' as edn;
-import 'dart:js';
 
 @Component(
   selector: 'node',
