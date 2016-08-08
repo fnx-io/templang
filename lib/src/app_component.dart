@@ -2,6 +2,8 @@ import 'package:angular2/core.dart';
 
 import 'package:templang/src/edn.dart' as edn;
 import 'dart:js' as js;
+import 'dart:html' as h;
+import 'dart:async';
 
 @Component(
     selector: 'app',
@@ -52,6 +54,10 @@ class AppComponent implements OnInit, AfterViewInit {
 
   ChangeDetectorRef changes;
 
+  String currentName;
+  String loadName;
+
+  List<String> saved = [];
 
   AppComponent(ChangeDetectorRef ref) {
     this.changes = ref;
@@ -65,9 +71,49 @@ class AppComponent implements OnInit, AfterViewInit {
     }
   }
 
+  void save() {
+    if (currentName == null || currentName.isEmpty) {
+      h.window.alert("Please, input a name for this mockup");
+    } else {
+      h.window.localStorage["templang:${currentName}"] = txtInput;
+    }
+    buildSavedList();
+  }
+
+  void autosave() {
+    if (currentName == null || currentName.isEmpty) {
+      return;
+    } else {
+      h.window.localStorage["templang:${currentName}-autosave"] = txtInput;
+    }
+    buildSavedList();
+  }
+
+  void load(){
+    txtInput = h.window.localStorage[loadName];
+    inputChanged(txtInput);
+    currentName = loadName.replaceFirst(new RegExp(".*:"), "");
+    currentName = currentName.replaceFirst(new RegExp("-autosave\$"), "");
+
+    js.JsObject doc = editor.callMethod("getDoc");
+    doc.callMethod("setValue", [txtInput]);
+  }
+
+  void buildSavedList() {
+    saved = h.window.localStorage.keys.where((String n) => n != null && n.startsWith("templang:")).toList();
+  }
+
   @override
   ngOnInit() {
     inputChanged(txtInput);
+    buildSavedList();
+    currentName = "demo";
+    save();
+    Timer t = new Timer.periodic(new Duration(seconds: 10), (_) {
+       if (currentName != null && currentName.isNotEmpty) {
+         autosave();
+       }
+    });
   }
 
   @override
@@ -76,6 +122,7 @@ class AppComponent implements OnInit, AfterViewInit {
 
     var opts = {'lineNumbers': true, 'matchBrackets': true};
     editor = cm.callMethod("fromTextArea", [textArea.nativeElement, new js.JsObject.jsify(opts)]);
+
     var self = this;
     var handler = (dynamic ed, dynamic change) {
       var jsObject = new js.JsObject.fromBrowserObject(ed);
@@ -86,6 +133,7 @@ class AppComponent implements OnInit, AfterViewInit {
     };
     editor.callMethod("setSize", ["100%", "70vh"]);
     editor.callMethod("on", ['change', js.allowInterop(handler)]);
+
   }
 
 

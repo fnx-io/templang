@@ -25,6 +25,26 @@ body, html {
 .templang__textarea {
     width: 100%;
 }
+.templang__controls {
+    width: 100%;
+    flex-grow: 0;
+    flex-shrink: 0;
+    overflow: hidden;
+    padding: 0.2em;
+}
+.templang__controls > * {
+    display: block;
+    float: left;
+}
+.templang__controls > select {
+    width: calc(100% - 4em);
+}
+.templang__controls > input {
+    width: calc(100% - 4em);
+}
+.templang__controls > button {
+    width: 4em;
+}
 .templang__help {
     width: 100%;
     padding: 1em;
@@ -137,7 +157,8 @@ body, html {
     border-left: 1px solid black;
     position: absolute;
     top: 0;
-    right:0;
+    right: 0;
+    bottom: 0;
     width: 2rem;
     text-align: center;
     cursor: pointer;
@@ -155,6 +176,7 @@ body, html {
     text-align: center;
     display: inline-flex;
     padding-left: 0.4rem;
+    cursor: pointer;
 }
 .block__string {
     font-size: 1.5rem;
